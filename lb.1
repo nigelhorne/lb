@@ -1,0 +1,54 @@
+.TH NET 1 "njh@smsltd.demon.co.uk"
+.UC 4
+.SH NAME
+net \- run a program on the least loaded machine on the LAN
+.SH SYNOPSIS
+.br
+.B net
+.B \-s
+.br
+.B net
+command
+[
+args...
+]
+.SH DESCRIPTION
+.I Net
+allows programs to be offloaded over Ethernet or some other
+similar fast LAN, onto the least loaded machine.
+.PP
+When given the option
+.B \-s
+option
+.I net
+will wait indefinitely doing nothing.
+This is expected to be started in
+.I /etc/rc
+and is available for cacheing purposes.
+.PP
+If the program is called by any name other than
+.I net
+then that program will be offloaded.
+This allows links to
+.I net
+to be put into some directory such as
+.I /net
+and
+.I /usr/net
+and these to be searched early in the PATH.
+.SH CAVEAT
+If this program is intalled on a system with only B-net or NFS
+the program will use
+.B remsh(1)
+to run the programs.
+As such no interactive programs will work,
+whereas they will work properly on a system with the Newcastle
+Connexion.
+.SH EXAMPLE
+.B "cat /tmp/fred | net nroff -cm | lp"
+.SH FILES
+/usr/spool/rwho/* \- for finding load averages.
+.br
+$HOME/.rhosts, /etc/hosts.lav \- list of machines to search.
+.SH DIAGNOSTICS
+No permission to use network \- issued to stop root doing things with it.
