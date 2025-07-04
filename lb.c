@@ -43,7 +43,9 @@
 #include	<fcntl.h>
 #include	<sys/types.h>
 #include	<sys/stat.h>
+#ifndef	__APPLE__
 #include	<malloc.h>
+#endif
 #include	<stdlib.h>
 #include	<unistd.h>
 
